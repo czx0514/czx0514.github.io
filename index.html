@@ -1,9 +1,82 @@
-<!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="UTF-8">
+    <title>Hello,2015</title>
 
-  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    html,body{
+        width: 100%;
+        height:100%;
+        background-color: #0066ff;
+    }
+    html,body{
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+        body{
+        font-size: 1em;
+        font-family: "Microsoft Yahei","黑体",monospace;
+        }
+        .title,.content p{
+        display: none;
+        }
+    </style>
+
+    <script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://sandbox.runjs.cn/uploads/rs/446/q9fsxu3w/jquery-timing.min.js"></script>
+    <script defer src="http://sandbox.runjs.cn/uploads/rs/446/q9fsxu3w/idangerous.swiper.m.js"></script>
+    <link rel="stylesheet" href="http://sandbox.runjs.cn/uploads/rs/446/q9fsxu3w/idangerous.swiper.css">
+    <style>
+    .swiper-container, .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+    </style>
+<script type="text/javascript">
+
+$(function(){
+  var mySwiper = $('.swiper-container').swiper({
+    
+    mode:'vertical',
+    loop: true,
+		mousewheelControl:true,
+		keyboardControl:true,
+		onSlideChangeStart:function(){
+			
+			
+		},
+		onSlideChangeEnd:function(){
+	$('.content p').each($).show(1000).wait(1600);
+	},
+		onSwiperCreated:function(){
+		$('.title').wait(500).slideDown().delay(500).animate({fontSize:"250%",color:"red",display:"block"},3000,"swing");
+$('.content p').each($).show(1000).wait(1600);
+		}
+    
+  });
+    
+
+	
+
+
+
+
+
+    
+})
+</script>
+
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!--First Slide-->
+          <div class="swiper-slide" style="background-color:#DAB1D5;"> 
+           <div class="title">Happy Birthday</div>
+           <div class="content">
+                <meta charset="UTF-8">
 
   <title>祥总生日快乐!！</title>
 
@@ -184,91 +257,30 @@
 
   <script src="js/index.js"></script>
 
-<!-- Baidu Button BEGIN -->
+           </div>
+          </div>
 
-	
-<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare" style="margin-left:380px;margin-top:10px">
-<a class="bds_weixin"></a>
-<a class="bds_tsina"></a>
-<a class="bds_tqq"></a>
-<a class="bds_renren"></a>
-<a class="bds_qzone"></a>
-<a class="bds_tqf"></a>
-<a class="bds_xg"></a>
-<a class="bds_t163"></a>
-<a class="bds_douban"></a>
-<a class="bds_diandian"></a>
-<a class="bds_hx"></a>
-<a class="bds_ty"></a>
-<span class="bds_more"></span>
-<a class="shareCount"></a>
-</div>
+          <!--Second Slide-->
+          <div class="swiper-slide" style="background-color:gray;">
+           <div class="title">Hope you have a good spirit everyday</div>
+						<p>
+							i i i i i i i i i i i
+							
+						</p>
+						<p>
+							The best wishes to you
+						</p>
+          </div>
 
-<div style="clear:both"></div>
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-</script>
-<!-- Baidu Button END -->
-
-</body>
-<!doctype html>
-<html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML5 canvas炫酷3D雪花飘落特效</title>
-  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-</head>
-<body style="background:#DAB1D5;"> 
-  <script type="text/javascript">
-(function($){
-  $.fn.snow = function(options){
-  var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'9999', 'top': '-50px'}).html('❄'),
-  documentHeight  = $(document).height(),
-  documentWidth = $(document).width(),
-  defaults = {
-    minSize   : 10,
-    maxSize   : 20,
-    newOn   : 1000,
-    flakeColor  : "#fff" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
-  },
-  options = $.extend({}, defaults, options);
-  var interval= setInterval( function(){
-  var startPositionLeft = Math.random() * documentWidth - 100,
-  startOpacity = 0.5 + Math.random(),
-  sizeFlake = options.minSize + Math.random() * options.maxSize,
-  endPositionTop = documentHeight - 200,
-  endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
-  durationFall = documentHeight * 10 + Math.random() * 5000;
-  $flake.clone().appendTo('body').css({
-    left: startPositionLeft,
-    opacity: startOpacity,
-    'font-size': sizeFlake,
-    color: options.flakeColor
-  }).animate({
-    top: endPositionTop,
-    left: endPositionLeft,
-    opacity: 0.2
-  },durationFall,'linear',function(){
-    $(this).remove()
-  });
-  }, options.newOn);
-    };
-})(jQuery);
-$(function(){
-    $.fn.snow({ 
-      minSize: 5, /* 定义雪花最小尺寸 */
-      maxSize: 50,/* 定义雪花最大尺寸 */
-      newOn: 300  /* 定义密集程度，数字越小越密集 */
-    });
-});
-</script>
+          <!--Third Slide-->
+          <div class="swiper-slide" style="background-color:green;"> 
+           <div class="title">爱过
+				</div>
+          </div>
+          <!--Etc..-->
+        </div>
+    </div>
+    
+    
 </body>
 </html>
-</html>
-<audio autoplay="autoplay" controls="controls"loop="loop" preload="auto"
-            src="http://sc1.111ttt.com/2016/1/11/09/204090932285.mp3">
-      你的浏览器不支持audio标签
-</audio>
