@@ -1,43 +1,88 @@
-<<!doctype html>
-<html>
-    <head>
-        <title>垂直方向+自适应/全屏</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="swiper.min.css">
-        <style>
-            html,body{
-                position:relative;
-                height:100%;
-            }
-            body{
-                margin:0;
-                padding:0;
-            }
-            .swiper-container{
-                width:100%;
-                height:100%;
-            }
-            .swiper-slide{
-                font-size:18px;
-                display:flex;
-                text-align:center;
-                justify-content:center;
-                align-items:center;
-                background:#F2F2F2;
-            }
-            
-        </style>
-    </head>
-    <body>
-                <div class="swiper-slide">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../dist/css/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background:background-color: #0066ff;;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+			 body{
+        font-size: 1em;
+        font-family: "Microsoft Yahei","黑体",monospace;
+        }
+        .title,.content p{
+        display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-color:gray;"></div>
+					<div class="title">Hope you have a good spirit everyday</div>
+						<p>
+							i i i i i i i i i i i
+							
+						</p>
+						<p>
+							The best wishes to you
+						</p>
+          </div>
+<div class="swiper-slide" style="background-color:#DAB1D5;">
+           <div class="title">Happy Birthday</div>
+           <div class="content">
+                <meta charset="UTF-8">
+
+  <title>祥总生日快乐!！</title>
 
   <link rel="stylesheet" href="style/reset.css">
 
     <link rel="stylesheet" href="style/style.css" media="screen" type="text/css" />
 <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1.0,maximum-scale=1.0"/>
 
+</head>
 
-
+<body>
 
   <div class="velas">
     <div class="fuego"></div>
@@ -204,46 +249,33 @@
 </div>
 
   <script src='js/jquery.js'></script>
+
+  <script src="js/index.js"></script>
+
 </div>
-<div class="swiper-slide" style="background-color:gray;">
-           <div class="title">Hope you have a good spirit everyday</div>
-						<p>
-							i i i i i i i i i i i
-							
-						</p>
-						<p>
-							The best wishes to you
-						</p>
-          </div>
-<div class="swiper-slide" style="background-color:green;"> 
-           <div class="title">爱过</div>
-                <div class="swiper-slide">第四页</div>
-                <div class="swiper-slide">第五页</div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+            <div class="swiper-slide">Slide 10</div>
         </div>
-        <script src="swiper.min.js"></script>
-        <script>
-            var swiper = new Swiper('.swiper-container',{
-                pagination:'.swiper-pagination',
-                paginationClickable:true,
-                direction:'vertical'
-            });
-        </script>
-<!DOCTYPE html>
-<html lang="en">
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
 
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <script type="text/javascript" src="index.js"></script>
+    <!-- Swiper JS -->
+    <script src="../dist/js/swiper.min.js"></script>
 
-
-    	<div id="container">
-    		<div id="leafContainer"></div>
-    	</div>
-    </body>
-</html>
-<audio autoplay="autoplay" controls="controls"loop="loop" preload="auto"
-            src="http://sc1.111ttt.com/2016/1/11/09/204090932285.mp3">
-      你的浏览器不支持audio标签
-</audio>
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        direction: 'vertical'
+    });
+    </script>
+</body>
 </html>
