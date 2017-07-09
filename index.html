@@ -226,106 +226,72 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
                 <div class="eight-words">一念百草生.</div>
         </div>
     </body>
-    
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title></title>
 <style>
-html,body {
-	overflow: hidden;
-	margin: 0;
-}
-#canvas {
-	display: block;
-	border: 1px solid #000;
-	margin: 0 auto;
-	background: #000;
-}
 </style>
 </head>
 <body>
-<canvas id="canvas"></canvas>
-<script>
-var c = document.getElementById('canvas');
-var cxt = c.getContext('2d');
-var arr = [];
-c.width = window.innerWidth;
-c.height = window.innerHeight;
-var W = window.innerWidth;
-var H = window.innerHeight;
-window.onresize = function () {
-	c.width = window.innerWidth;
-	c.height = window.innerHeight;
-	
-	var W = window.innerWidth;
-	var H = window.innerHeight;
-}
-//随机函数的封装
-function rad(n,m) {
-	return Math.floor(Math.random()*(m-n) + n);
-}
-function d(n) {
-	return n*Math.PI/180;
-}
-//单开页面是 随机在页面中生成100个雪花
-for ( var i = 0; i < 150; i++ ) {
-	arr.push({
-		'left': rad(0,W),
-		'top': rad(0,H),
-		'deg': rad(-10,10),//控制雪花位置
-		'scale': rad(2,10)  //控制雪花大小
-	});
-}
-setInterval(drawSnow,16);
-//页面生成雪花
-function drawSnow() {
-	
-	cxt.clearRect(0,0,c.width,c.height);
-	cxt.save();
-	
-	for ( var i = 0; i < arr.length; i++ ) {
-		var h = 0.5*arr[i].scale;//雪花下落的速度
-		arr[i].left = arr[i].left + Math.tan(d(arr[i].deg))*h;
-		arr[i].top = arr[i].top + h;
-		
-		//如果雪花在页面之外  则删除雪花  提高性能
-		if ( arr[i].left < 0 || arr[i].left > W || arr[i].top > H  ) {
-			arr.splice(i--,1);
-			continue;
-		}
-		
-		//雪花颜色渐变
-		var width_i = arr[i].scale;
-		var ra = cxt.createRadialGradient(arr[i].left,arr[i].top,width_i/4,arr[i].left,arr[i].top,width_i);
-		ra.addColorStop(0,"rgba(255,255,255,1)");
-		ra.addColorStop(1,"rgba(255,255,255,0.1)");
-		cxt.fillStyle = ra;
-		
-		
-		cxt.beginPath();
-		cxt.arc(arr[i].left,arr[i].top,width_i,0,2*Math.PI);
-		cxt.fill();	
-	}
-	cxt.restore();
-}
-function next() {
-	setTimeout(function () {
-		if ( arr.length < 200 ) {
-			for ( var i = 0; i < 20; i++ ) {
-				arr.push({
-					'left': rad(0,W),
-					'top': 0,
-					'deg': rad(-10,10),
-					'scale': rad(2,10)
-				});
-			}
-		}
-		next();
-	},Math.random()*200 + 500);
-}
-next();
-</script>
+
+
 </body>
 </html>
+
+<script src="js/zepto.min.js" type="text/javascript"></script>
+<script>
+function snowFlow(snow) {
+    var screenW = $(window).width(),
+        screenH = $(window).height(),
+        snowBox = $("<div class='snow-box' style='position: fixed;top: 0;color: #fff;'>"),
+        snowBoxHtml = "",
+        snowCss = "",
+        snowAttr = {
+            "opacity" : [],
+            "fontSize" : [],
+            "x" : [],
+            "y" : []
+        },
+        offsetX = 0,
+        offsetY = 0;
+    for(var i = 0; i < parseInt(snow.num || 18); i += 1){
+        snowCss = "";
+        snowAttr["opacity"][i] = 0.5 + 0.5*Math.random();
+        snowAttr["fontSize"][i] = 20 + 20*Math.random();
+        snowAttr["x"][i] = parseInt(screenW*Math.random());
+        snowAttr["y"][i] = -i*80;
+        snowCss = "position:absolute;top:0;";
+        snowCss += "opacity:" + snowAttr["opacity"][i] + ";";
+        snowCss += "font-size:" + snowAttr["fontSize"][i] + "px;";
+        snowCss += "-webkit-transform:" + "translate3d(" + snowAttr["x"][i] + "px," + snowAttr["y"][i] + "px, 0)" + ";";
+        snowCss += "transform:" + "translate3d(" + snowAttr["x"][i] + "px," + snowAttr["y"][i] + "px, 0)" + ";";
+        snowBoxHtml += "<b class='snow' style='"+ snowCss +"'>" + snow.text + "</b>";
+    }
+    snowBox.html(snowBoxHtml);
+    snowBox.appendTo($("body"));
+    var snow = $(".snow");
+    timer = setInterval( function () {
+        $.each(snow, function(index, item){
+            if(snowAttr["y"][index] > screenH || snowAttr["x"][index] < -50 || snowAttr["x"][index] > screenW + 50){
+                snowAttr["y"][index] = -100;
+                snowAttr["x"][index] = parseInt( screenW*Math.random());
+            }
+            offsetX = index%2 ? -0.2 : 0.2;
+            offsetY = index%2 ? 0.7 : 0.9;
+            snowAttr["x"][index] += offsetX;
+            snowAttr["y"][index] += offsetY;
+            $(item).css({
+                "-webkit-transform": "translate3d(" + snowAttr["x"][index] + "px," + snowAttr["y"][index] + "px, 0)",
+                "transform": "translate3d(" + snowAttr["x"][index] + "px," + snowAttr["y"][index] + "px, 0)"
+            })
+        })
+    } , 1000/60);
+}
+snowFlow({
+    num: $(window).width() / 35,
+    text: "❄"
+});
+</script>
